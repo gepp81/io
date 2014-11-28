@@ -52,7 +52,7 @@ exports.stateEdit = function (req, res) {
 exports.stateUpdate = function (req, res) {
 
     var orm = require("orm");
-
+    console.log("A");
     orm.connect("postgres://gpidote:gpi123@localhost/huesos", function (err, db) {
         if (err) throw err;
 
