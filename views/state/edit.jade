@@ -1,0 +1,8 @@
+form(method='post',action='/stateUpdate')
+
+  input(type='hidden',name='id',id='id', value='#{state.id}')
+
+  label(for='name') Name:
+  input(type='text',name='name',id='name', value='#{state.name}')
+
+  input(type='submit',name='submit',value='Submit').submit-button

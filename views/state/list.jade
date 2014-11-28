@@ -1,0 +1,6 @@
+table
+  each val in states.length ? states : ['There are no values']
+    tr
+      td= val.name
+      td
+        a(href="/stateEdit/#{val.id}") Edit
