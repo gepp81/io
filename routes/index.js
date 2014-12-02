@@ -6,37 +6,17 @@ exports.index = function (req, res) {
 
 exports.state = function (req, res) {
 
-
-
-
     var orm = require("orm");
 
-    orm.connect("postgres://gpidote:gpi123@localhost/huesos", function (err, db) {
-        if (err) throw err;
+    var buscar = req.body.name;
 
-        var State = db.define("provincia", {
-            id: 'integer',
-            name: String
-        });
-
-        var buscar = {};
-        if (req.body.name.length != 0) {
-            buscar = {
-                name: req.body.name
-            };
-        }
-
-        console.log(buscar);
-
-
-        State.find(buscar, function (err, result) {
+    req.models.State.find().where("LOWER(name) LIKE ?", ['%' + buscar.toLowerCase() + '%'],
+        function (err, result) {
+            console.log(result);
             res.render('state/list', {
                 states: result
             });
         });
-
-
-    })
 };
 
 exports.stateEdit = function (req, res) {

@@ -3,7 +3,8 @@
  */
 
 var express = require('express'),
-    routes = require('./routes');
+    routes = require('./routes'),
+    orm = require('orm');
 
 var app = module.exports = express.createServer();
 
@@ -14,8 +15,18 @@ app.configure(function () {
     app.set('view engine', 'jade');
     app.use(express.bodyParser());
     app.use(express.methodOverride());
+    app.use(orm.express("postgres://gpidote:gpi123@localhost/huesos", {
+        define: function (db, models, next) {
+            models.State = db.define("provincia", {
+                id: 'integer',
+                name: String
+            });
+            next();
+        }
+    }));
     app.use(app.router);
     app.use(express.static(__dirname + '/public'));
+
 });
 
 app.configure('development', function () {
@@ -28,6 +39,7 @@ app.configure('development', function () {
 app.configure('production', function () {
     app.use(express.errorHandler());
 });
+
 
 // Routes
 
