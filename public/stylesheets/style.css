@@ -2,25 +2,9 @@ body {
     padding: 0%;
     margin: 0%;
     font: 14px"Lucida Grande", Helvetica, Arial, sans-serif;
+    /*font-size: 1.9em!important;*/
 }
-#menu {
-    width: 100%;
-    background-color: #6397ff;
-    height: 3em;
-}
-#menu li {
-    display: inline
-}
-#menu ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-}
-#menu li {
-    float: left;
-}
-#menu a {
-    display: block;
-    width: 60px;
+.panel {
+    width: 90%!important;
+    margin: auto;
 }

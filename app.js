@@ -34,13 +34,14 @@ app.configure('production', function () {
 app.get('/', routes.index);
 
 app.get('/about', function (req, res) {
-    res.send("Huesos 0.0.0");
+    res.render('about');
 });
 
 app.get('/state', routes.state);
-
+app.post('/state', routes.state);
+app.get('/stateNew', routes.stateNew);
+app.post('/stateSave', routes.stateSave);
 app.get('/stateEdit/:id', routes.stateEdit);
-
 app.post('/stateUpdate', routes.stateUpdate);
 
 app.listen(3000, function () {
