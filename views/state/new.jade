@@ -1,6 +1,13 @@
-form(method='post',action='/stateSave')
+.panel.panel-default
+  .panel-heading 
+      h2 Provincias > Nueva
+    .panel-body
+      form(role="form", method='post',action='/stateSave')
 
-  label(for='name') Name:
-  input(type='text',name='name',id='name')
+        .form-group
+          label(for='name') Nombre:
+          input.form-control(type='text',name='name',id='name', placeholder="Nombre")
 
-  input(type='submit',name='submit',value='Submit').submit-button
+        .form-group.navbar-right.buttonsForms
+          input.btn(type='button',name='cancel',value='Cancelar')
+          input.btn.btn-default(type='submit',name='submit',value='Guardar')

@@ -1,29 +1,31 @@
-nav.navbar.navbar-default(role="navigation")
-  ul.nav.navbar-nav
-    li
-      a(href="/") 
-        i.fa.fa-home.fa-fw.fa-lg
-        | Home
-        
-    li
-      a(href="/") 
-        i.fa.fa-archive.fa-fw.fa-lg
-        | Inventario Oseo
+nav.menu.navbar.navbar-default(role="navigation")
 
-    li.dropdown
-      a.dropdown-toggle(href="#", data-toggle="dropdown", role="button", aria-expanded="false")
-        i.fa.fa-arrow-circle-down.fa-fw.fa-lg
-        | Datos
-        ul.dropdown-menu(role="menu")
-          li
-            a(href="/state") Provincias  
+  .collapse.navbar-collapse
+      ul.nav.navbar-nav
+        li
+          a(href="/") 
+            i.fa.fa-home.fa-fw.fa-lg
+            .line Home
 
-    li
-      a(href="/") 
-        i.fa.fa-gear.fa-fw.fa-lg
-        | Configuración
+        li
+          a(href="/") 
+            i.fa.fa-archive.fa-fw.fa-lg
+            .line Inventario Oseo
 
-    li
-      a(href="/about") 
-        i.fa.fa-question.fa-fw.fa-lg
-        | Acerca de
+        li.dropdown
+          a.dropdown-toggle(href="#", data-toggle="dropdown", role="button", aria-expanded="false")
+            i.fa.fa-arrow-circle-down.fa-fw.fa-lg
+            .line Datos
+          ul.dropdown-menu(role="menu")
+            li
+              a(href="/state")
+                | Provincias
+        li
+          a(href="/config") 
+            i.fa.fa-gear.fa-fw.fa-lg
+            .line Configuración
+
+        li
+          a(href="/about") 
+            i.fa.fa-question.fa-fw.fa-lg
+            .line Acerca de   

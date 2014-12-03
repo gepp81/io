@@ -49,6 +49,10 @@ app.get('/about', function (req, res) {
     res.render('about');
 });
 
+app.get('/config', function (req, res) {
+    res.render('config');
+});
+
 app.get('/state', routes.state);
 app.post('/state', routes.state);
 app.get('/stateNew', routes.stateNew);

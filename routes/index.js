@@ -1,92 +1,55 @@
 exports.index = function (req, res) {
-    res.render('index', {
-        title: 'Express'
-    });
+  res.render('index', {
+    title: 'Inventario Oseo'
+  });
 };
 
 exports.state = function (req, res) {
 
-    var orm = require("orm");
+  var buscar = '%%';
 
-    var buscar = req.body.name;
+  if (req.body.name != undefined) {
+    buscar = '%' + req.body.name.toLowerCase() + '%';
+  }
 
-    req.models.State.find().where("LOWER(name) LIKE ?", ['%' + buscar.toLowerCase() + '%'],
-        function (err, result) {
-            console.log(result);
-            res.render('state/list', {
-                states: result
-            });
-        });
+  req.models.State.find().where("LOWER(name) LIKE ?", [buscar],
+    function (err, result) {
+      res.render('state/list', {
+        states: result
+      });
+    });
 };
 
 exports.stateEdit = function (req, res) {
 
-    var orm = require("orm");
-
-    orm.connect("postgres://gpidote:gpi123@localhost/huesos", function (err, db) {
-        if (err) throw err;
-
-        var State = db.define("provincia", {
-            id: 'integer',
-            name: String
-        });
-
-        State.get(req.params.id, function (err, result) {
-            res.render('state/edit', {
-                state: result
-            });
-
-        });
-
-
-    })
+  req.models.State.get(req.params.id, function (err, result) {
+    res.render('state/edit', {
+      state: result
+    });
+  });
 };
 
 exports.stateUpdate = function (req, res) {
 
-    var orm = require("orm");
-    console.log("A");
-    orm.connect("postgres://gpidote:gpi123@localhost/huesos", function (err, db) {
-        if (err) throw err;
-
-        var State = db.define("provincia", {
-            id: 'integer',
-            name: String
-        });
-
-        State.get(req.body.id, function (err, result) {
-            result.name = req.body.name;
-            result.save(function (err) {
-                res.redirect('/state');
-            });
-        });
-
-    })
+  req.models.State.get(req.body.id, function (err, result) {
+    result.name = req.body.name;
+    result.save(function (err) {
+      res.redirect('/state');
+    });
+  });
 };
 
 exports.stateNew = function (req, res) {
-    res.render('state/new');
+  res.render('state/new');
 };
 
 exports.stateSave = function (req, res) {
 
-    var orm = require("orm");
+  var newRecord = {
+    name: req.body.name
+  };
 
-    orm.connect("postgres://gpidote:gpi123@localhost/huesos", function (err, db) {
-        if (err) throw err;
-
-        var State = db.define("provincia", {
-            id: 'integer',
-            name: String
-        });
-
-        var newRecord = {
-            name: req.body.name
-        };
-
-        State.create(newRecord, function (err, results) {
-            res.redirect('/state');
-        });
-
-    })
+  req.models.State.create(newRecord, function (err, results) {
+    res.redirect('/state');
+  });
 };

@@ -1,8 +1,14 @@
-form(method='post',action='/stateUpdate')
+.panel.panel-default
+  .panel-heading 
+      h2 Provincias > Editar
+    .panel-body
+      form(method='post',action='/stateUpdate', role='form')
+        .form-group
+          input(type='hidden',name='id',id='id', value='#{state.id}')
 
-  input(type='hidden',name='id',id='id', value='#{state.id}')
+          label(for='name') Nombre:
+          input.form-control(type='text',name='name',id='name', value='#{state.name}', placeholder="Nombre")
 
-  label(for='name') Name:
-  input(type='text',name='name',id='name', value='#{state.name}')
-
-  input(type='submit',name='submit',value='Submit').submit-button
+        .form-group.navbar-right.buttonsForms
+          input.btn(type='button',name='cancel',value='Cancelar')
+          input.btn.btn-default(type='submit',name='submit',value='Guardar')

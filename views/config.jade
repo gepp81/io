@@ -1,0 +1,12 @@
+.panel.panel-default
+  .panel-heading 
+    h3 
+      i.fa.fa-cog.fa-fw.fa-2x
+      | Configuración
+  
+  .panel-body
+     i.fa.fa-database.fa-fw.fa-lg
+     | Base de datos
+     form(role="form", method='post',action='/saveConfig')
+
+      input(type='submit',name='submit',value='Submit').submit-button
