@@ -1,13 +1,13 @@
 .panel.panel-default
   .panel-heading 
-      h2 Provincias > Nueva
+      h2 #{labels.title} > Crear
     .panel-body
-      form(role="form", method='post',action='/stateSave')
-
+      form(role="form", method='post',action='/dependencySave')
+        input(type='hidden',name='model',id='model', value='#{model}')
         .form-group
           label(for='name') Nombre:
           input.form-control(type='text',name='name',id='name', placeholder="Nombre")
 
         .form-group.navbar-right.buttonsForms
-          input.btn(type='button',name='cancel',value='Cancelar')
+          input.btn(type='button',name='cancel',value='Cancelar', onClick="history.back()")
           input.btn.btn-default(type='submit',name='submit',value='Guardar')

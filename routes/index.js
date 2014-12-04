@@ -1,55 +1,79 @@
+var texts = require('../lib/labels.js');
+texts = texts.labels;
+
 exports.index = function (req, res) {
   res.render('index', {
     title: 'Inventario Oseo'
   });
 };
 
-exports.state = function (req, res) {
+exports.dependency = function (req, res) {
 
-  var buscar = '%%';
+  var buscar = '%%',
+    model;
 
   if (req.body.name != undefined) {
     buscar = '%' + req.body.name.toLowerCase() + '%';
   }
 
-  req.models.State.find().where("LOWER(name) LIKE ?", [buscar],
+  if (req.params.model != undefined) {
+    model = req.params.model;
+  } else if (req.body.model != undefined) {
+    model = req.body.model;
+  }
+
+  req.models[model].find().where("LOWER(name) LIKE ?", [buscar],
     function (err, result) {
-      res.render('state/list', {
-        states: result
+      res.render('dependency/list', {
+        states: result,
+        model: model,
+        labels: texts[model]
       });
     });
 };
 
-exports.stateEdit = function (req, res) {
+exports.dependencyEdit = function (req, res) {
 
-  req.models.State.get(req.params.id, function (err, result) {
-    res.render('state/edit', {
-      state: result
+  var model = req.params.model;
+
+  req.models[model].get(req.params.id, function (err, result) {
+    res.render('dependency/edit', {
+      state: result,
+      model: model,
+      labels: texts[model]
     });
   });
 };
 
-exports.stateUpdate = function (req, res) {
+exports.dependencyUpdate = function (req, res) {
 
-  req.models.State.get(req.body.id, function (err, result) {
+  var model = req.body.model;
+
+  req.models[model].get(req.body.id, function (err, result) {
     result.name = req.body.name;
     result.save(function (err) {
-      res.redirect('/state');
+      res.redirect('/dependency/' + model);
     });
   });
 };
 
-exports.stateNew = function (req, res) {
-  res.render('state/new');
+exports.dependencyNew = function (req, res) {
+  var model = req.params.model;
+  res.render('dependency/new', {
+    model: model,
+    labels: texts[model]
+  });
 };
 
-exports.stateSave = function (req, res) {
+exports.dependencySave = function (req, res) {
 
   var newRecord = {
     name: req.body.name
   };
 
-  req.models.State.create(newRecord, function (err, results) {
-    res.redirect('/state');
+  var model = req.body.model;
+
+  req.models[model].create(newRecord, function (err, results) {
+    res.redirect('/dependency/' + model);
   });
 };
