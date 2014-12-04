@@ -40,8 +40,19 @@ app.configure('production', function () {
     app.use(express.errorHandler());
 });
 
+// Manejo de error 404
 
-// Routes
+app.use(function(req, res, next){
+  res.status(404);
+
+  // respond with html page
+  if (req.accepts('html')) {
+    res.render('error', { url: req.url });
+    return;
+  }
+});
+
+// Rutas
 
 app.get('/', routes.index);
 
@@ -59,6 +70,7 @@ app.get('/stateNew', routes.stateNew);
 app.post('/stateSave', routes.stateSave);
 app.get('/stateEdit/:id', routes.stateEdit);
 app.post('/stateUpdate', routes.stateUpdate);
+
 
 app.listen(3000, function () {
     console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);

@@ -40,3 +40,12 @@ body {
 .buttonsForms {
   width: 20%!important;
 }
+.errorPanel {
+  text-align: center
+}
+.errorLeft{
+  padding-right: 5%;
+}
+.errorRight{
+  padding-left: 5%;
+}
