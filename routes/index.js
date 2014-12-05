@@ -1,5 +1,5 @@
-var texts = require('../lib/labels.js');
-texts = texts.labels;
+var texts = require('../config/labels.js');
+
 
 exports.index = function (req, res) {
   res.render('index', {
@@ -8,7 +8,6 @@ exports.index = function (req, res) {
 };
 
 exports.dependency = function (req, res) {
-
   var buscar = '%%',
     model;
 
@@ -22,12 +21,12 @@ exports.dependency = function (req, res) {
     model = req.body.model;
   }
 
-  req.models[model].find().where("LOWER(name) LIKE ?", [buscar],
+  req.models[model].find().where("LOWER(name) LIKE ?", [buscar]).order('name').run(
     function (err, result) {
       res.render('dependency/list', {
         states: result,
         model: model,
-        labels: texts[model]
+        labels: texts.labels[model]
       });
     });
 };
@@ -40,7 +39,7 @@ exports.dependencyEdit = function (req, res) {
     res.render('dependency/edit', {
       state: result,
       model: model,
-      labels: texts[model]
+      labels: texts.labels[model]
     });
   });
 };
@@ -61,7 +60,7 @@ exports.dependencyNew = function (req, res) {
   var model = req.params.model;
   res.render('dependency/new', {
     model: model,
-    labels: texts[model]
+    labels: texts.labels[model]
   });
 };
 
@@ -77,3 +76,32 @@ exports.dependencySave = function (req, res) {
     res.redirect('/dependency/' + model);
   });
 };
+
+exports.io = function (req, res) {
+
+  req.models.IO.find({},['id'], (
+    function (err, result) {
+      res.render('io/list', {
+        states: result
+      });
+    }));
+};
+
+/*exports.config = function (req, res) {
+  var settings = require('../config/settings.js');
+  res.render('config', {
+    settings: settings
+  });
+};
+
+/*exports.configSave = function (req, res) {
+  var fs = require('fs');
+  console.log("The ");
+  fs.writeFile("config/settings2.js", "Hey there!", function (err) {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log("The file was saved!");
+    }
+  });
+//};**/

@@ -1,6 +1,6 @@
 .panel.panel-default
   .panel-heading 
-    h2 #{labels.title} > Listado de #{labels.plural}
+    h2 IO > Listado de Inventarios
   .panel-body
     form.navbar-form.navbar-left(role="search", method='post',action='/dependency')
       .form-group
@@ -10,7 +10,7 @@
 
     a.btn.btn-default.navbar-right(type="button", href="/dependencyNew/#{model}")
         i.fa.fa-pencil.fa-fw.fa-lg
-        | Crear #{labels.title}
+        | Crear Inventario
 
     table.table
       thead
@@ -20,7 +20,7 @@
       tbody
         each val, i in states
           tr(class=(i % 2 == 0) ? 'odd' : 'even') 
-            td= val.id
+            td= val.ficharesumen
             td
-              a(href="/dependencyEdit/#{val.id}/#{model}")
+              a(href="/ioEdit/#{val.id}")
                 i.fa.fa-edit.fa-fw.fa-lg(data-toggle="tooltip", title="Editar")
