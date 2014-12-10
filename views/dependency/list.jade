@@ -1,0 +1,28 @@
+extends ../layout
+block content
+  .panel.panel-default
+    .panel-heading 
+      h2 #{labels.title} > Listado de #{labels.plural}
+    .panel-body
+      form.navbar-form.navbar-left(role="search", method='post',action='/dependency/search')
+        .form-group
+          input(type='hidden',name='model',id='model', value='#{model}')
+          input.form-control(type="text", placeholder="Nombre", name='name',id='name')
+          button.btn.btn-default(type="submit", name="submit") Buscar
+
+      a.btn.btn-default.navbar-right(type="button", href="/dependency/new/#{model}")
+          i.fa.fa-pencil.fa-fw.fa-lg
+          | Crear #{labels.title}
+
+      table.table
+        thead
+          tr
+            th Nombre
+            th Acciones
+        tbody
+          each val, i in states
+            tr(class=(i % 2 == 0) ? 'odd' : 'even') 
+              td= val.name
+              td
+                a(href="/dependency/edit/#{model}/#{val.id}")
+                  i.fa.fa-edit.fa-fw.fa-lg(data-toggle="tooltip", title="Editar")

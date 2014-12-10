@@ -1,0 +1,29 @@
+.panel.panel-default
+  .panel-heading 
+      h2 Configuración
+    .panel-body
+
+      form(method='post',action='/configSave', role='form')
+        i.fa.fa-database.fa-fw.fa-lg
+        | Base de datos
+        hr
+        .form-group
+          label(for='database.user') Usuario:
+          input.form-control(type='text',name='database.user',id='database.user', value='#{settings.database.user}', placeholder="Usuario")
+
+          label(for='database.password') Password:
+          input.form-control(type='password',name='database.password',id='database.password', value='#{settings.database.password}', placeholder="Password")
+          
+          label(for='database.host') Host:
+          input.form-control(type='text',name='database.host',id='database.host', value='#{settings.database.host}', placeholder="Ruta del host")          
+          
+          label(for='database.database') Base de Datos:
+          input.form-control(type='text',name='database.database',id='database.database', value='#{settings.database.database}', placeholder="Nombre de la base")
+          
+          label(for='database.protocol') Protocolo:
+          input.form-control(type='text',name='database.protocol',id='database.protocol', value='#{settings.database.protocol}', placeholder="postgresql or mysql")              
+
+        .form-group.navbar-right.buttonsForms
+          input.btn(type='button',name='cancel',value='Cancelar', onClick="history.back()")
+          input.btn.btn-default(type='submit',name='submit',value='Guardar')
+

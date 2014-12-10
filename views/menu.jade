@@ -1,0 +1,58 @@
+nav.menu.navbar.navbar-default(role="navigation")
+
+  .collapse.navbar-collapse
+      ul.nav.navbar-nav
+        li
+          a(href="/") 
+            i.fa.fa-home.fa-fw.fa-lg
+            .line Home
+
+        li
+          a(href="/io") 
+            i.fa.fa-archive.fa-fw.fa-lg
+            .line Inventario Oseo
+
+        li.dropdown
+          a.dropdown-toggle(href="#", data-toggle="dropdown", role="button", aria-expanded="false")
+            i.fa.fa-arrow-circle-down.fa-fw.fa-lg
+            .line Datos
+          ul.dropdown-menu(role="menu")
+            li
+              a(href="/dependency/Acronym")
+                | Acrónimo
+              a(href="/dependency/Conservation")
+                | Conservación
+              a(href="/dependency/Dating")
+                | Datación
+              a(href="/dependency/Age")
+                | Edad
+              a(href="/dependency/Incoming")
+                | Ingreso
+              a(href="/dependency/Integrity")
+                | Integridad
+              a(href="/dependency/Location")
+                | Locación
+              a(href="/dependency/OtherRest")
+                | Otros Restos
+              a(href="/dependency/Preservation")
+                | Preservación
+              a(href="/dependency/Accuracy")
+                | Precisión
+              a(href="/dependency/State")
+                | Provincias
+              a(href="/dependency/Sepulture")
+                | Sepultura
+              a(href="/dependency/Sex")
+                | Sexo
+              a(href="/dependency/Site")
+                | Sitio
+        //        
+          li
+            a(href="/config") 
+              i.fa.fa-gear.fa-fw.fa-lg
+              .line Configuración
+
+        li
+          a(href="/about") 
+            i.fa.fa-question.fa-fw.fa-lg
+            .line Acerca de   

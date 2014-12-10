@@ -1,0 +1,17 @@
+extend ../layout
+block content
+  .panel.panel-default
+    .panel-heading 
+        h2 #{labels.title} > Editar
+      .panel-body
+        form(method='post',action='/dependency/update', role='form')
+          .form-group
+            input(type='hidden',name='id',id='id', value='#{state.id}')
+            input(type='hidden',name='model',id='model', value='#{model}')
+
+            label(for='name') Nombre:
+            input.form-control(type='text',name='name',id='name', value='#{state.name}', placeholder="Nombre")
+
+          .form-group.navbar-right.buttonsForms
+            input.btn(type='button',name='cancel',value='Cancelar', onClick="history.back()")
+            input.btn.btn-default(type='submit',name='submit',value='Guardar')
